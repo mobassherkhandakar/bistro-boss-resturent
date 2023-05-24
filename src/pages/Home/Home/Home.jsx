@@ -4,6 +4,7 @@ import Catagory from '../Catagory/Catagory';
 import BistroBoss from '../BistroBoss/BistroBoss';
 import PupularManu from '../PupularManu/PupularManu';
 import FutureJob from '../FutureJob/FutureJob';
+import Testimonial from '../Testimonial/Testimonial';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <BistroBoss/>
       <PupularManu/>
       <FutureJob/>
+      <Testimonial/>
     </div>
   );
 };

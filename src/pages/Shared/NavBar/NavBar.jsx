@@ -35,7 +35,7 @@ const NavBar = () => {
   );
   return (
     <div>
-      <div className="navbar absolute opacity-30 z-30 max-w-screen-xl bg-black text-white">
+      <div className="navbar fixed absolute  z-30 max-w-screen-xl bg-black bg-opacity-50 text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -59,15 +59,12 @@ const NavBar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {navItems}
-
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-          {navItems}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Get started</a>
