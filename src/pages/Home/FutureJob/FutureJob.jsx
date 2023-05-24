@@ -6,13 +6,13 @@ import fuatur from "../../../assets/home/featured.jpg";
 const FutureJob = () => {
   return (
     <>
-      <div className="bg-future text-white">
+      <div className="bg-future bg-fixed text-white">
         <div className="text-black">
         <SectionTitle subHeading={"Check it out"} heading={"FROM OUR MENU"} />
         </div>
-        <div className="md:flex justify-between items-center gap-4 py-12 px-36">
+        <div className="md:flex  bg-slate-500 bg-opacity-30 justify-between items-center gap-4 py-12 px-36">
           <div>
-            <img src={fuatur} alt="" />
+            <img  src={fuatur} alt="" />
           </div>
           <div className="md:ml-10">
             <p>Aug 20, 2029</p>
