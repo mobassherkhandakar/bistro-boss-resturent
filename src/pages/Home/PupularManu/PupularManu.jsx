@@ -1,19 +1,11 @@
 import React from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
-import  { useEffect, useState } from 'react';
 import ManuItems from '../ManuItems/ManuItems';
+import useManu from '../../../Hook/useManu';
 
 const PupularManu = () => {
-  const [manu,setManu] = useState([])
-  useEffect(()=>{
-    fetch('manu.json')
-    .then(res=> res.json())
-    .then(data => {
-      const popular = data.filter(item => item.category  === 'popular')
-      setManu(popular);
-    })
-  },[])
-  console.log(manu);
+  const [manu] = useManu()
+  const popular = manu.filter(item => item.category === 'popular')
   return (
     <section>
       <div>
@@ -21,7 +13,7 @@ const PupularManu = () => {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 my-5'> 
         {
-          manu.map(item => <ManuItems item={item} key={item._id}/>)
+          popular.map(item => <ManuItems item={item} key={item._id}/>)
         }
       </div>
     </section>
