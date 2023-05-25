@@ -5,8 +5,10 @@ import BistroBoss from '../BistroBoss/BistroBoss';
 import PupularManu from '../PupularManu/PupularManu';
 import FutureJob from '../FutureJob/FutureJob';
 import Testimonial from '../Testimonial/Testimonial';
+import useTitle from '../../../Hook/useTitele';
 
 const Home = () => {
+  useTitle('Home');
   return (
     <div>
       <Banner/>
