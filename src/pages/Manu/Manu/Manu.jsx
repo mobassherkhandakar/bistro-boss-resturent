@@ -26,7 +26,7 @@ const offered = manu.filter(item => item.category === 'offered')
       {/* Offered menu */}
       <MenuCategory items={offered}/>
       {/* Dessert Menu */}
-      <MenuCategory items={dessert} img={dessertImg} title={'Dessert'}/>
+      <MenuCategory items={dessert} img={dessertImg} title={'dessert'}/>
       <MenuCategory items={pizza} img={pizzaImg} title={'pizza'}/>
       <MenuCategory items={salad} img={saladImg} title={'salad'}/>
       <MenuCategory items={soup} img={soupImg} title={'soup'}/>
