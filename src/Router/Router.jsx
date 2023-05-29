@@ -5,6 +5,7 @@ import Manu from "../pages/Manu/Manu/Manu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Regester/Regester";
+import PrivateRout from "./PrivateRout";
 
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'order/:category',
-        element: <Order/>
+        element: <PrivateRout><Order/></PrivateRout>
       },
       {
         path: 'login',

@@ -1,7 +1,16 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   const navItems = (
     <>
       <li>
@@ -13,14 +22,26 @@ const NavBar = () => {
       <li>
         <Link to="order/salad">Order Food</Link>
       </li>
-      <li>
-        <Link to="login">Login</Link>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <button onClick={handleLogOut} className="btn capitalize btn-ghost">
+              logOut
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="login">Login</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
     <div>
-      <div className="navbar absolute  z-30 max-w-screen-xl bg-black bg-opacity-50 text-white">
+      <div className="navbar  fixed  z-30 max-w-screen-xl bg-black bg-opacity-50 text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

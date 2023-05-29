@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const Login = () => {
-  const refCaptacha = useRef(null)
+const location = useLocation()
+console.log(location.state?.from?.pathname);
+const navigate = useNavigate()
   const [desabled,setDesabled] = useState(true)
+  const {loginUser} = useContext(AuthContext)
+  const from = location.state?.from?.pathname || '/'
   useEffect(()=>{
     loadCaptchaEnginge(6); 
   },[])
@@ -16,11 +22,18 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email,password);
+    loginUser(email, password)
+    .then(result=>{
+      const loginUser = result.user;
+      navigate(from)
+      console.log(loginUser);
+    })
   }
-  const handlevalidate = ()=>{
-    const value = refCaptacha.current.value
+  const handlevalidate = (e)=>{
+    const value = e.target.value;
     if (validateCaptcha(value)==true) {
       setDesabled(false)
+      return
   }
 
   else {
@@ -75,16 +88,15 @@ const Login = () => {
                 </label>
                 <input
                   type="text"
-                  ref={refCaptacha}
+                  onBlur={handlevalidate}
                   placeholder="write captcha text avobe"
                   className="input input-bordered"
                 />
-                <button onClick={handlevalidate} className="btn-warning mt-2 btn-xs">validate</button>
               </div>
               <div className="form-control mt-6">
-                <button disabled={desabled} className="btn btn-primary">Login</button>
-                <div className="my-2 mx-auto">
-                  <p>Dont't Have a any account <Link className=" font-bold text-red-800" to={'/signup'}>signUp</Link></p>
+                <button type="submit" disabled={desabled} className="btn btn-primary">Login</button>
+                <div className="my-1 mx-auto">
+                  <p>Do not Have a any account <Link className=" font-bold text-red-800" to={'/signup'}>signUp</Link></p>
                 </div>
               </div>
             </form>
