@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
       return subscriber();
     };
   }, []);
-  console.log(auth);
+  // console.log(auth);
 
   const authInfo = {
     user,
