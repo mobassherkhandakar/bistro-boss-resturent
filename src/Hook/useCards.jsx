@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 
 const useCards = () => {
   const {user}= useContext(AuthContext)
-  // console.log(user?.email);
   const { refetch, data: card = []} = useQuery({
     queryKey: ['cards', user?.email],
     queryFn: async()=>{
@@ -12,7 +11,6 @@ const useCards = () => {
       return res.json()
     },
   })
-  console.log(card)
   return [refetch, card]
   
 };

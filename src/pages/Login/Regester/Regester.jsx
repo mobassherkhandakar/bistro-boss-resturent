@@ -1,25 +1,47 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const {createUser,updateUserProfile}= useContext(AuthContext)
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password)
-    .then(result =>{
+    createUser(data.email, data.password).then((result) => {
       const createUser = result.user;
       console.log(createUser);
-      console.log(data.name, data.photo);
       updateUserProfile(data.name, data.photo)
-      .then(()=> {})
-      .catch(error=> console.log(error))
-    })
+      .then(() => {
+          const user = {name: data.name, email: data.email}
+          fetch('http://localhost:5000/users',{
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          })
+          .then(res=> res.json())
+          .then(data =>{
+            if(data.insertedId){
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User signup successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate('/')
+            }
+          })
+        })
+        .catch((error) => console.log(error));
+    });
   };
   return (
     <div>
@@ -98,7 +120,7 @@ const Register = () => {
                   placeholder="password"
                   className="input input-bordered"
                 />
-                {errors.password?.type === 'required' && (
+                {errors.password?.type === "required" && (
                   <span className="text-red-700 font-bold">
                     Password field is required
                   </span>
@@ -124,8 +146,16 @@ const Register = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Sign Up</button>
               </div>
+              <div className="my-1 mx-auto">
+                  <p>
+                    Already have an a account{" "}
+                    <Link className=" font-bold text-red-800" to={"/login"}>
+                      Login
+                    </Link>
+                  </p>
+                </div>
             </form>
           </div>
         </div>

@@ -3,41 +3,39 @@ import useCards from "../../../Hook/useCards";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useTitle from "../../../Hook/useTitele";
+import SectionTitle from "../../Home/SectionTitle/SectionTitle";
 
 const MyCard = () => {
-  useTitle('My-Card')
-  const [refetch , card] = useCards();
+  useTitle("My-Card");
+  const [refetch, card] = useCards();
   const total = card.reduce((sum, item) => item.price + sum, 0);
-  const handleDelete = item => {
+  const handleDelete = (item) => {
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`http://localhost:5000/cards/${item._id}`, {
-                method: 'DELETE'
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    }
-                })
-        }
-    })
-}
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/cards/${item._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your Product has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
+      <SectionTitle subHeading={"My-Card"} heading={"WANNA ADD MORE?"} />
       <div className="uppercase font-semibold h-[60px] flex justify-between items-center">
         <h3 className="text-xl">Total Items: {card.length}</h3>
         <h3 className="text-xl">Total Price: ${total.toFixed(2)}</h3>

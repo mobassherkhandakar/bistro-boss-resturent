@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 import { AuthContext } from "../../../Provider/AuthProvider";
-
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
-const location = useLocation()
-console.log(location.state?.from?.pathname);
-const navigate = useNavigate()
-  const [desabled,setDesabled] = useState(true)
-  const {loginUser} = useContext(AuthContext)
-  const from = location.state?.from?.pathname || '/'
-  useEffect(()=>{
-    loadCaptchaEnginge(6); 
-  },[])
+  const location = useLocation();
+  console.log(location.state?.from?.pathname);
+  const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(true);
+  const { loginUser } = useContext(AuthContext);
+  const from = location.state?.from?.pathname || "/";
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
-  const handleLogin = e =>{
-    e.preventDefault()
+  const handleLogin = (e) => {
+    e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email,password);
-    loginUser(email, password)
-    .then(result=>{
+    console.log(email, password);
+    loginUser(email, password).then((result) => {
       const loginUser = result.user;
-      navigate(from)
+      navigate(from);
       console.log(loginUser);
-    })
-  }
-  const handlevalidate = (e)=>{
+    });
+  };
+  const handlevalidate = (e) => {
     const value = e.target.value;
-    if (validateCaptcha(value)==true) {
-      setDesabled(false)
-      return
-  }
-
-  else {
-      setDesabled(true)
-  }
-    
-  }
+    if (validateCaptcha(value) == true) {
+      setDisabled(false);
+      return;
+    } else {
+      setDisabled(true);
+    }
+  };
   return (
     <div>
       <div className="flex items-center  min-h-screen bg-base-200">
@@ -84,7 +84,7 @@ const navigate = useNavigate()
               </div>
               <div className="form-control">
                 <label className="label">
-                <LoadCanvasTemplate />
+                  <LoadCanvasTemplate />
                 </label>
                 <input
                   type="text"
@@ -94,10 +94,22 @@ const navigate = useNavigate()
                 />
               </div>
               <div className="form-control mt-6">
-                <button type="submit" disabled={desabled} className="btn btn-primary">Login</button>
+                <button
+                  type="submit"
+                  disabled={disabled}
+                  className="btn btn-primary"
+                >
+                  Login
+                </button>
                 <div className="my-1 mx-auto">
-                  <p>Do not Have a any account <Link className=" font-bold text-red-800" to={'/signup'}>signUp</Link></p>
+                  <p>
+                    Do not Have a any account{" "}
+                    <Link className=" font-bold text-red-800" to={"/signup"}>
+                      signUp
+                    </Link>
+                  </p>
                 </div>
+                <SocialLogin />
               </div>
             </form>
           </div>
