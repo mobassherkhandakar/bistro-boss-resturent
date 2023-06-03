@@ -17,8 +17,10 @@ const Register = () => {
       const createUser = result.user;
       console.log(createUser);
       updateUserProfile(data.name, data.photo)
+
       .then(() => {
-          const user = {name: data.name, email: data.email}
+        const user = {name: data.name, email: data.email}
+        console.log(user);
           fetch('http://localhost:5000/users',{
             method: 'POST',
             headers: {
@@ -28,6 +30,7 @@ const Register = () => {
           })
           .then(res=> res.json())
           .then(data =>{
+            console.log(data);
             if(data.insertedId){
               Swal.fire({
                 position: "top-end",
@@ -39,7 +42,7 @@ const Register = () => {
               navigate('/')
             }
           })
-        })
+      })
         .catch((error) => console.log(error));
     });
   };

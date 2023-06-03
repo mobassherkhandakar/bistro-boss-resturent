@@ -30,6 +30,10 @@ const AllUsers = () => {
             }
         })
   }
+  // const handleDelete = user =>{
+
+  // }
+
   return (
     <div>
       <SectionTitle subHeading={"Hurry Up"} heading={"MANAGE ALL ITEMS"} />
