@@ -1,17 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const useManu = () => {
- 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/menu")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setManu(data);
-  //       setLoading(false)  
-  //     });
-  // }, []);
-
-  const {data: manu = [], isLoading: loading} = useQuery({
+  const {data: manu = [], isLoading: loading, refetch} = useQuery({
     queryKey: ['manu'],
     queryFn: async()=>{
       const res = await fetch("http://localhost:5000/menu")
@@ -19,6 +9,6 @@ const useManu = () => {
     }
   })
 
-  return [manu, loading]
+  return [manu, loading, refetch]
 };
 export default useManu;

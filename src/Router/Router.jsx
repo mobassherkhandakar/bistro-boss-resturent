@@ -50,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'allusers',
-        element: <AllUsers/>
+        element: <AddminRoute><AllUsers/></AddminRoute>
       },
       {
         path: 'addItems',
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'manageItem',
-        element: <ManageItem/>
+        element: <AddminRoute><ManageItem/></AddminRoute>
       }
     ]
   }

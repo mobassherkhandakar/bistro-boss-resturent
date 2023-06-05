@@ -109,8 +109,8 @@ const Additems = () => {
             className="file-input file-input-bordered file-input-info w-full max-w-xs"
           />
         </div>
-        <div className="my-4 flex justify-center">
-          <button className="btn btn-warning" type="submit">
+        <div className="my-4 flex  justify-center">
+          <button className="btn w-full btn-success" type="submit">
             Add Item
           </button>
         </div>
