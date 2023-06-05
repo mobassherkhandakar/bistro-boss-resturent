@@ -53,64 +53,66 @@ const Login = () => {
             </p>
           </div>
           <div className="card mx-auto w-full md:w-1/2 max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <LoadCanvasTemplate />
-                </label>
-                <input
-                  type="text"
-                  onBlur={handlevalidate}
-                  placeholder="write captcha text avobe"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control mt-6">
-                <button
-                  type="submit"
-                  disabled={disabled}
-                  className="btn btn-primary"
-                >
-                  Login
-                </button>
-                <div className="my-1 mx-auto">
-                  <p>
-                    Do not Have a any account{" "}
-                    <Link className=" font-bold text-red-800" to={"/signup"}>
-                      signUp
-                    </Link>
-                  </p>
+            <div className="card-body">
+              <form onSubmit={handleLogin}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                  />
                 </div>
-                <SocialLogin />
-              </div>
-            </form>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered"
+                  />
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <LoadCanvasTemplate />
+                  </label>
+                  <input
+                    type="text"
+                    onBlur={handlevalidate}
+                    placeholder="write captcha text avobe"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control mt-6">
+                  <button
+                    type="submit"
+                    disabled={false}
+                    className="btn btn-primary"
+                  >
+                    Login
+                  </button>
+                  <div className="my-1 mx-auto">
+                    <p>
+                      Do not Have a any account{" "}
+                      <Link className=" font-bold text-red-800" to={"/signup"}>
+                        signUp
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </form>
+              <SocialLogin />
+            </div>
           </div>
         </div>
       </div>

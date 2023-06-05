@@ -9,6 +9,9 @@ import Dashboard from "../layout/Dashboard";
 import MyCard from "../pages/Dashboard/MyCard/MyCard";
 import PrivateRout from "./PrivateRout";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import Additems from "../pages/Dashboard/AddItems/Additems";
+import AddminRoute from "./AdminRoute";
+import ManageItem from "../pages/Dashboard/ManageItem/ManageItem";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +51,14 @@ const router = createBrowserRouter([
       {
         path: 'allusers',
         element: <AllUsers/>
+      },
+      {
+        path: 'addItems',
+        element: <AddminRoute><Additems/></AddminRoute>
+      },
+      {
+        path: 'manageItem',
+        element: <ManageItem/>
       }
     ]
   }
