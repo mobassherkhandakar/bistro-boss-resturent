@@ -7,6 +7,7 @@ import FutureJob from '../FutureJob/FutureJob';
 import Testimonial from '../Testimonial/Testimonial';
 import useTitle from '../../../Hook/useTitele';
 
+
 const Home = () => {
   useTitle('Home');
   return (

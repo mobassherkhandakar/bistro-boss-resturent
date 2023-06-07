@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useTitle from "../../../Hook/useTitele";
 import SectionTitle from "../../Home/SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 const MyCard = () => {
   useTitle("My-Card");
@@ -39,7 +40,7 @@ const MyCard = () => {
       <div className="uppercase font-semibold h-[60px] flex justify-between items-center">
         <h3 className="text-xl">Total Items: {card.length}</h3>
         <h3 className="text-xl">Total Price: ${total.toFixed(2)}</h3>
-        <button className="btn btn-warning btn-sm">PAY</button>
+        <Link to="/dashboard/payment"><button className="btn btn-warning btn-sm">PAY</button></Link>
       </div>
       <div>
         <div className="overflow-x-auto w-full">
